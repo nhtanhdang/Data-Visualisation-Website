@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Global Obesity Insight: Food Metrics & Trends</title>
+
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+         
+         <!-- Sankey -->
+         <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
+        <!-- ICONS BOXICONS -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <!-- ===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <a href="#" class="nav__logo">COS30045 Data Visualisation</a>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu-alt-right'></i>
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#section" class="nav__link">Introduction</a></li>
+                        <li class="nav__item"><a href="#description" class="nav__link">Map</a></li>
+                        <li class="nav__item"><a href="#scatterplot-description" class="nav__link">Scatter Plot</a></li>
+                        <li class="nav__item"><a href="#sankey-description" class="nav__link">Sankey Chart</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- ===== HOME =====-->
+            <div class="home">
+                <div class="parallax home__parallax home__parallax-img1" data-rellax-speed="-9"></div>
+                <div class="parallax home__parallax home__parallax-img2" data-rellax-speed="-7"></div>
+                <div class="parallax home__parallax home__parallax-img3" data-rellax-speed="-6"></div>
+                <div class="parallax home__parallax home__parallax-img4" data-rellax-speed="-3"></div>
+
+                <h1 class="parallax home__title" data-rellax-speed="-6">Global Obesity Insight:<br>Food Metrics & Trends</h1>
+                <span class="parallax home__subtitle" data-rellax-speed="-5">Duc Thuan Tran - ID: 104330455<br>Nhat Anh Dang - ID: 103502059</span> 
+
+                 
+            </div>
+
+            <!-- ===== SECTION =====-->
+            <section class="l-section" id="section" style="padding-top: 3rem;">
+                <div class="section">
+                    <div class="section__data">
+                        <h2 class="section__title">Introduction</h2>
+                        <p class="section__text">This study embarks on a comprehensive analysis of the correlation between food supply 
+                            metrics and adult obesity rates across 42 countries, spanning the years from 2010 to 2020. Our motivation 
+                            lies in addressing the pressing global issue of obesity, a multifaceted challenge with significant 
+                            implications for public health and well-being. 
+                            <br><br>
+                            The primary audience for the proposed visualisations includes 
+                            policymakers, public health officials, researchers, and advocacy groups involved in addressing obesity and dietary-related 
+                            issues on a global scale. These stakeholders require clear, intuitive, and informative visual representations of data to 
+                            inform their decision-making processes, prioritise interventions, allocate resources effectively, and track progress over time.
+                        
+                        </p>
+                    </div>
+        
+                    <img src="assets/image/MKVXR32YA5ORBPTI4FLENVLQFQ.jpg" alt="" class="section__img">
+                </div>
+            </section>
+        </main>
+        <div id="container">
+            <div id="description" style="width: 40%; height: 95vh; float: right; padding-top: 4rem;">
+                <br><h1>Welcome to Choropleth Map</h1><br>
+                <p>This interactive map provides a visual representation of various data types across different countries over the years. Explore trends to gain insights into global nutritional habits and health metrics.</p>
+                <ol>
+                <li>
+                    <strong>Select a Continent:</strong> Use the continent buttons to focus on a specific region or view the global data by selecting "All".
+                </li>
+                <li>
+                    <strong>Choose a Year:</strong> Use the year buttons to view the data for a particular year. The available years range from 2010 to 2020.
+                </li>
+                <li>
+                    <strong>Pick a Data Type:</strong> Use the data type buttons to visualise different metrics such as Fat intake, Protein consumption, etc.
+                </li>
+                <li>
+                    <strong>Interact with the Map:</strong> Hover over a country on the map to see its name, the selected year, and the corresponding data value for the chosen metric.
+                </li>
+                <li>
+                    <strong>Update Display:</strong> Click the "Update" button to apply your selections and refresh the map visualisation.
+                </li>
+                </ol>
+                <label><strong>Select Year:</strong></label>
+                <select id="map-year-select">
+                    <option id="year-2010" name="year" value="2010" selected>2010</option>
+                    <option id="year-2011" name="year" value="2011">2011</option>
+                    <option id="year-2012" name="year" value="2012">2012</option>
+                    <option id="year-2013" name="year" value="2013">2013</option>
+                    <option id="year-2014" name="year" value="2014">2014</option>
+                    <option id="year-2015" name="year" value="2015">2015</option>
+                    <option id="year-2016" name="year" value="2016">2016</option>
+                    <option id="year-2017" name="year" value="2017">2017</option>
+                    <option id="year-2018" name="year" value="2018">2018</option>
+                    <option id="year-2019" name="year" value="2019">2019</option>
+                    <option id="year-2020" name="year" value="2020">2020</option>
+                </select>
+                <br><br>
+                <label><strong>Select Continent:</strong></label><br>
+                <input type="radio" id="continent-all" name="continent" value="All" checked> All
+                <input type="radio" id="continent-au" name="continent" value="Australia"> Australia
+                <input type="radio" id="continent-eu" name="continent" value="Europe"> Europe
+                <input type="radio" id="continent-as" name="continent" value="Asia"> Asia
+                <br>
+                <input type="radio" id="continent-na" name="continent" value="North America"> North America
+                <input type="radio" id="continent-sa" name="continent" value="South America"> South America
+                <input type="radio" id="continent-af" name="continent" value="Africa"> Africa
+                <br><br>
+                <label><strong>Select Data:</strong></label><br>
+                <input type="radio" id="data-fat" name="data" value="Fat" checked> Fat
+                <input type="radio" id="data-protein" name="data" value="Protein"> Protein
+                
+                <input type="radio" id="data-fruit" name="data" value="Fruit"> Fruit
+                <input type="radio" id="data-sugar" name="data" value="Sugar"> Sugar
+                <input type="radio" id="data-veg" name="data" value="Veg"> Vegetables
+                
+                <input type="radio" id="data-obesity" name="data" value="Obesity"> Obesity
+
+                <br><br>
+                <button id="display">Update</button>
+
+            </div>
+            <div id="map" style="width: 60%; height: 95vh; float: left;padding-top: 4rem;">
+                <script src="assets/js/map.js"></script>
+            </div>
+        </div>
+
+         <!-- Scatter Plot Section -->
+         <div id="scatterplot-container">
+            <div id="scatterplot-description" style="width: 40%; height: 95vh; float: right;padding-top: 4rem;">
+                <br><h1>Welcome to Scatter Plot</h1><br>
+                <p>Illustrates the dynamic shifts in the supply of key food categories across multiple countries over a decade. The size of each data point corresponds to the obesity rate recorded in that country, offering a nuanced view of the potential relationships between dietary trends and public health outcomes.</p>
+                <ol>
+                    <li>
+                      <strong>Select a Region:</strong> Use the dropdown menu to choose a region to focus your analysis.
+                    </li>
+                    <li>
+                      <strong>Choose a Country:</strong> Based on the selected region, a list of countries will be populated. Select the country you want to analyse.
+                    </li>
+                    <li>
+                      <strong>Pick a Determinant:</strong> Use the dropdown menu to choose the food category you want to visualize on the scatter plot.
+                    </li>
+                    <li>
+                      <strong>Interact with the Scatter Plot:</strong> Hover over a data point to see detailed information.
+                    </li>
+                    <li>
+                        <strong>Update Display:</strong> Click the "Update" button to apply your selections and refresh the map visualisation.
+                    </li>
+                  </ol>
+                
+                <!-- Continent Selection Dropdown -->
+                <label for="continent-select"><strong>Select Region:</strong></label>
+                <select id="continent-select">
+                    <option value="Asia">Asia</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Australia" selected>Australia</option>
+                    <option value="Western Europe">Western Europe</option>
+                    <option value="Eastern Europe">Eastern Europe</option>
+                    <option value="Northern Europe">Northern Europe</option>
+                    <option value="Southern Europe">Southern Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                </select>
+
+                <br><br>
+            
+                <!-- Country Selection Dropdown -->
+                <label for="country-select"><strong>Select Country:</strong></label>
+                <select id="country-select">
+                    <!-- Options will be populated dynamically -->
+                    <option value="All">All</option>
+                    <option value="Australia" selected>Australia</option>
+                    <option value="New Zealand">New Zealand</option>
+                </select>
+
+                <br><br>
+
+                <!-- Food supply Selection Dropdown -->
+                <label for="food-select"><strong>Select Determinant:</strong></label>
+                <select id="food-select">
+                    <option value="Protein" selected>Protein</option>
+                    <option value="Fat">Fat</option>
+                    <option value="Fruit">Fruit</option>
+                    <option value="Sugar">Sugar</option>
+                    <option value="Veg">Vegetables</option>
+                </select>
+
+                <br> <br>
+            
+                <!-- Filter Button -->
+                <button id="filterButton" >Update</button>
+            </div>
+        
+            <div id="scatterplot" style="width: 60%; height: 95vh; float: left;padding-top: 4rem;">
+                <script src="assets/js/scatter.js"></script>
+            </div>
+        </div>
+        <!-- Sankey Chart Section -->
+        <div id="sankey-container">
+            <div id="sankey-description" style="width: 40%; height: 95vh; float: right;padding-top: 4rem;">
+                <br><h1>Welcome to Sankey Chart</h1><br>
+                <p>Represents the flow of data, specifically showcasing the distribution of food consumption across different food groups and countries within the chosen region, providing an intuitive way to understand the relative proportions and relationships between these elements.</p>
+                <ol>
+                    <li>
+                      <strong>Select a Region:</strong> Use the dropdown menu to choose a region to analyse.
+                    </li>
+                    <li>
+                      <strong>Explore the Sankey Chart:</strong> The width of the flows represents the relative proportion of consumption for each category.
+                    </li>
+                    <li>
+                      <strong>Analyse Country-Level Data:</strong> Select country to narrow down analysis viewpoint.
+                    </li>
+                    <li>
+                      <strong>Hover Over Sankey Links:</strong> Hovering over a link (flow) in the Sankey chart and see detailed data value represented by that link.
+                    </li>
+                    <li>
+                        <strong>Update Display:</strong> Click the "Update" button to apply your selections and refresh the map visualisation.
+                    </li>
+                  </ol>
+                
+                <!-- Continent Selection Dropdown -->
+                <label for="sankey-continent-select"><strong>Select Region:</strong></label>
+                <select id="sankey-continent-select">
+                    <option value="Asia">Asia</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Australia" selected>Australia</option>
+                    <option value="Western Europe">Western Europe</option>
+                    <option value="Eastern Europe">Eastern Europe</option>
+                    <option value="Northern Europe">Northern Europe</option>
+                    <option value="Southern Europe">Southern Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                </select>
+
+                <br><br>
+            
+                <!-- Country Selection Dropdown -->
+                <label for="sankey-country-select"><strong>Select Country:</strong></label>
+                <select id="sankey-country-select">
+                    <!-- Options will be populated dynamically -->
+                    <option value="All">All</option>
+                    <option value="Australia" selected>Australia</option>
+                    <option value="New Zealand">New Zealand</option>
+                </select>
+
+                <br><br>
+
+                <!-- Year Selection Dropdown -->
+                <label for="sankey-year-select"><strong>Select Year:</strong></label>
+                <select id="sankey-year-select">
+                    <option value="2010" selected>2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+
+                <br><br>
+
+                <!-- Food Group Selection Dropdown -->
+                <label for="sankey-food-select"><strong>Select Food Group:</strong></label>
+                <select id="sankey-food-select">
+                    <option value="Protein-Fat" selected>Protein-Fat (in grams)</option>
+                    <option value="Fruit-Sugar-Veg">Fruit-Sugar-Vegetables (in kilograms)</option>
+                </select>
+
+
+                <br> <br>
+            
+                <!-- Filter Button -->
+                <button id="sankeyFilterButton" >Update</button>
+            </div>
+            <div id="sankey" style="width: 60%; height: 95vh; float: left;padding-top: 4rem;">
+                <script src="assets/js/sankey.js"></script>
+            </div>
+        </div>
+        
+        <!-- RELLAX JS -->
+        <script src="assets/js/rellax.min.js"></script>
+
+        <!-- GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+
+        <!-- SCROLL REVEAL -->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!-- MAIN JS -->
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
